@@ -4,16 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class EvilMrBeast : MonoBehaviour {
-    public GameObject MrBeast;
+ 
     public GameObject player;
     public NavMeshAgent agent;
     private const string ISWALKING = "isWalking";
     [SerializeField] private Animator Animator;
+    [SerializeField] private AudioSource steps;
     private GameManager gameManager;
+
     private void Start ( ) {
         agent = GetComponent<NavMeshAgent>();
         gameManager = GameManager.instance;
 
+    }
+
+  void FootEvent(int whichFoot) {
+        steps.Play();
     }
 
     private void Update ( ) {

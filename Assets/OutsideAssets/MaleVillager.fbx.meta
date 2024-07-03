@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
+      name: Armature|Walk (1)
+      takeName: Armature|Walk
       internalID: -8945691123924629249
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,7 +61,23 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.065363355
+        functionName: FootEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7174caf9ad4314a4e9d392082e2d1829,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5912269
+        functionName: FootEvent
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 7174caf9ad4314a4e9d392082e2d1829,
+          type: 3}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

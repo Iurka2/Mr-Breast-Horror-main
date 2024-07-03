@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private AudioSource EvilLaugh;
     [SerializeField] private AudioSource GameOverSound;
+    [SerializeField] private AudioSource Rain;
 
     [SerializeField] TextMeshProUGUI runText;
 
     [SerializeField] GameObject Gameover;
+    [SerializeField] GameObject GG;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Key;
     [SerializeField] GameObject MrBeast;
@@ -61,19 +63,24 @@ public class GameManager : MonoBehaviour {
         runText.enabled = false; // Disable the text
     }
 
+
+    public void Gg ( ) {
+        GG.SetActive(true);
+        Player.SetActive(false);
+        MrBeast.SetActive(false);
+        Rain.Stop();
+    }
+
     public void GameOver ( ) {
         Gameover.SetActive(true);
         Player.SetActive(false);
         MrBeast.SetActive(false);
         GameOverSound.Play();
+        Rain.Stop();
     }
 
 
-    public void Gg( ) {
-        Gameover.SetActive(true);
-        Player.SetActive(false);
-        MrBeast.SetActive(false);
-    }
+
 
     public void RestartGame ( ) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

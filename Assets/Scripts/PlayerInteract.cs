@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour {
     public void Interaction () {
      
 
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 5, interactableLayerMask)) {
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit,3, interactableLayerMask)) {
             interactText.SetActive(true);
             if(hit.collider.GetComponent<ItemsInteractable>() != false) {
 
