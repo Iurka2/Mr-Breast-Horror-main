@@ -17,12 +17,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private AudioSource Rain;
 
     [SerializeField] TextMeshProUGUI runText;
+    [SerializeField] TextMeshProUGUI finalTimerTime;
+
 
     [SerializeField] GameObject Gameover;
     [SerializeField] GameObject GG;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Key;
     [SerializeField] GameObject MrBeast;
+    [SerializeField] TimerTimer timer;
+
 
     [SerializeField] private float displayTime = 2f;
 
@@ -69,6 +73,9 @@ public class GameManager : MonoBehaviour {
         Player.SetActive(false);
         MrBeast.SetActive(false);
         Rain.Stop();
+        timer.StopTimer();
+
+        finalTimerTime.text = "Final Time: " + timer.GetFinalTime().ToString("0:00");
     }
 
     public void GameOver ( ) {
