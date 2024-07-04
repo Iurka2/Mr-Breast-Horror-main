@@ -84,8 +84,8 @@ public class FlashLightManager : MonoBehaviour
             flashHealth.fillAmount = currentBattery / 100f;
         }
     }
-
-    public void ToggleFlashLight ( ) {
+    
+    private void ToggleFlashLight ( ) {
         flashLightIsOn = !flashLightIsOn;
         if (state == FlashLightState.Dead)
         {
