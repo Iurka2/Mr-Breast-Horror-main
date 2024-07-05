@@ -2,26 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TouchControlsKit;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Note : MonoBehaviour {
 
-    public GameObject note;
+    public Button note;
 
 
- 
-    private void Update ( ) {
-        NoteAction();
+    private void Awake ( ) {
+        note.onClick.AddListener(( ) => {
+            note.enabled = false;
+        });
+
 
     }
 
-    private void NoteAction ( ) {
-        if(TCKInput.GetAction("Note", EActionEvent.Down)) {
-            note.SetActive(false);
-            
-        }
+
     }
-
-
-
-
-}

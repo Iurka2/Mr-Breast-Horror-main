@@ -8,7 +8,10 @@ public class Colectebles : MonoBehaviour
 
     [SerializeField] private AudioSource paperSound;
 
-    public static int total = 10;
+    public static int chocolatetotal = 10;
+    
+
+
 
 
 

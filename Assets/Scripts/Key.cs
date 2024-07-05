@@ -7,17 +7,17 @@ public class Key : MonoBehaviour
     [SerializeField] GameObject invObj;
     [SerializeField] GameObject keyObj;
     [SerializeField] AudioSource keySound;
+    public static int keyTotal = 1;
 
-    
-    private void Start ( ) {
-       
-    }
+ 
 
  
     public void KeyInteract() {
         invObj.SetActive(true);
-        keyObj.SetActive(false);
         keySound.Play();
+        GameManager.instance?.OnKeyCollected();
+        Destroy(gameObject);
+       
     }
 
 

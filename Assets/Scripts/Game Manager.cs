@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance; // Singleton instance
-    public int collectedItems; // Track collected items centrally
+    public int collectedItems;
+    public int keycount;// Track collected items centrally
     [SerializeField] private int requiredItemsToActivate = 5;
     [SerializeField] private int requiredItemsForKey = 10;// Number of items needed to activate MrBeast
 
@@ -50,6 +51,10 @@ public class GameManager : MonoBehaviour {
         if(collectedItems == requiredItemsForKey) {
             Key.SetActive(true);
         }
+    }
+
+    public void OnKeyCollected () {
+        keycount++;
     }
 
     private void ActivateMrBeast ( ) {
