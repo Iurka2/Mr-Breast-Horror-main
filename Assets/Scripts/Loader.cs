@@ -8,6 +8,7 @@ public static class Loader
     public enum Scene {
         MainMenu,
         LVL1,
+        LVL3,
         LoadingScreen,
     }
 

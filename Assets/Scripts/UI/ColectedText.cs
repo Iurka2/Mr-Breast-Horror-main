@@ -6,7 +6,8 @@ public class ColectedText : MonoBehaviour
 {
   
     TMPro.TMP_Text text;
-    public int count; 
+    public int count;
+    public int final;
 
     private void Awake ( ) {
         text = GetComponent<TMPro.TMP_Text>();
@@ -23,7 +24,7 @@ public class ColectedText : MonoBehaviour
     }
 
     void UpdateCount ( ) {
-        text.text = $"{count} / {Colectebles.chocolatetotal}";
+        text.text = $"{count} / {final} ";
     }
 
 }

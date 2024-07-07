@@ -27,7 +27,7 @@ public class FirstPersonMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Update IsRunning from input.
-        IsRunning = canRun && Input.GetKey(runningKey);
+        IsRunning = canRun && (TCKInput.GetAction("jumpBtn", EActionEvent.Down));
 
         // Get targetMovingSpeed.
         float targetMovingSpeed = IsRunning ? runSpeed : speed;
