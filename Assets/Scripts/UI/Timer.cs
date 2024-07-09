@@ -7,7 +7,7 @@ using UnityEngine;
 public class TimerTimer : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI timerText;
-    float elapsedTime;
+    public float elapsedTime;
     bool timerStopped = false;
     public float finalTime;
 

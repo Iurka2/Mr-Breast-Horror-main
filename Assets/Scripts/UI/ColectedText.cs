@@ -8,7 +8,7 @@ public class ColectedText : MonoBehaviour
     TMPro.TMP_Text text;
     public int count;
     public int final;
-
+    public int finalScore;
     private void Awake ( ) {
         text = GetComponent<TMPro.TMP_Text>();
     }
@@ -23,8 +23,11 @@ public class ColectedText : MonoBehaviour
        
     }
 
+
+
     void UpdateCount ( ) {
         text.text = $"{count} / {final} ";
     }
 
+  
 }

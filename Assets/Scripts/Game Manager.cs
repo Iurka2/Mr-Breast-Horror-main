@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance; // Singleton instance
     public int collectedItems;
     public int keycount;// Track collected items centrally
+    public int totalScore;
+    public int finalScore;
     [SerializeField] private int requiredItemsToActivate = 5;
     [SerializeField] private int requiredItemsForKey = 10;// Number of items needed to activate MrBeast
 
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] TextMeshProUGUI runText;
     [SerializeField] TextMeshProUGUI finalTimerTime;
+    [SerializeField] TextMeshProUGUI finalBars;
 
 
     [SerializeField] GameObject Gameover;
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject Key;
     [SerializeField] GameObject MrBeast;
     [SerializeField] TimerTimer timer;
-
+    [SerializeField] ColectedText colectedText;
 
     [SerializeField] private float displayTime = 2f;
 
@@ -38,6 +41,12 @@ public class GameManager : MonoBehaviour {
         } else {
             Destroy(gameObject); // Only one GameManager instance allowed
         }
+
+        // Load final score and time from PlayerPrefs on Awake
+        finalScore = PlayerPrefs.GetInt("FinalScore", 0);
+        float savedTime = PlayerPrefs.GetFloat("FinalTime", 0f);
+        timer.finalTime = savedTime;
+        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(savedTime / 60), Mathf.FloorToInt(savedTime % 60));
     }
 
     public void OnItemCollected ( ) // Update collected items from other scripts
@@ -51,9 +60,10 @@ public class GameManager : MonoBehaviour {
         if(collectedItems == requiredItemsForKey) {
             Key.SetActive(true);
         }
+        finalScore = collectedItems;
     }
 
-    public void OnKeyCollected () {
+    public void OnKeyCollected ( ) {
         keycount++;
     }
 
@@ -79,8 +89,12 @@ public class GameManager : MonoBehaviour {
         MrBeast.SetActive(false);
         Rain.Stop();
         timer.StopTimer();
+        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
+        finalBars.text = string.Format("Colectebles: {0} / {1}", finalScore, totalScore);
 
-        finalTimerTime.text = "Final Time: " + timer.GetFinalTime().ToString("0:00");
+        // Save final score and time to PlayerPrefs on game win
+        PlayerPrefs.SetInt("FinalScore", finalScore);
+        PlayerPrefs.SetFloat("FinalTime", timer.elapsedTime);
     }
 
     public void GameOver ( ) {
@@ -89,6 +103,10 @@ public class GameManager : MonoBehaviour {
         MrBeast.SetActive(false);
         GameOverSound.Play();
         Rain.Stop();
+
+        // Reset PlayerPrefs on game over (optional)
+        
+         PlayerPrefs.DeleteKey("FinalTime");
     }
 
 
@@ -96,5 +114,9 @@ public class GameManager : MonoBehaviour {
 
     public void RestartGame ( ) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // Reset PlayerPrefs on restart (optional)
+        // PlayerPrefs.DeleteKey("FinalScore");
+        // PlayerPrefs.DeleteKey("FinalTime");
     }
 }

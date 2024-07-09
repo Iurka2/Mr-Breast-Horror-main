@@ -111,7 +111,7 @@ public class FirstPersonAudio : MonoBehaviour
     }
 
     #region Play instant-related audios.
-    void PlayLandingAudio() => PlayRandomClip(landingAudio, landingSFX);
+ 
     void PlayJumpAudio() => PlayRandomClip(jumpAudio, jumpSFX);
     void PlayCrouchStartAudio() => PlayRandomClip(crouchStartAudio, crouchStartSFX);
     void PlayCrouchEndAudio() => PlayRandomClip(crouchEndAudio, crouchEndSFX);
@@ -121,7 +121,7 @@ public class FirstPersonAudio : MonoBehaviour
     void SubscribeToEvents()
     {
         // PlayLandingAudio when Grounded.
-        groundCheck.Grounded += PlayLandingAudio;
+       
 
         // PlayJumpAudio when Jumped.
         if (jump)
@@ -140,7 +140,7 @@ public class FirstPersonAudio : MonoBehaviour
     void UnsubscribeToEvents()
     {
         // Undo PlayLandingAudio when Grounded.
-        groundCheck.Grounded -= PlayLandingAudio;
+       
 
         // Undo PlayJumpAudio when Jumped.
         if (jump)
