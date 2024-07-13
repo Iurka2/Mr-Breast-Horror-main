@@ -8,6 +8,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Running")]
     public bool canRun = true;
+    public bool isWalking;
+    public float walkingThreshold = 0.1f;
     public bool IsRunning { get; private set; }
     public float runSpeed = 9;
     public KeyCode runningKey = KeyCode.LeftShift;
@@ -37,9 +39,17 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         // Get targetVelocity from input.
-        Vector2 targetVelocity =new Vector2(TCKInput.GetAxis("Joystick",EAxisType.Horizontal) * targetMovingSpeed, (TCKInput.GetAxis("Joystick", EAxisType.Vertical) * targetMovingSpeed));
+        Vector2 targetVelocity = new Vector2(TCKInput.GetAxis("Joystick",EAxisType.Horizontal) * targetMovingSpeed, (TCKInput.GetAxis("Joystick", EAxisType.Vertical) * targetMovingSpeed));
+
 
         // Apply movement.
         rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+
+        isWalking = rigidbody.velocity.magnitude > walkingThreshold;
+    }
+
+
+    public bool IsWalking () {
+        return isWalking;
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using static GameManager;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private float displayTime = 2f;
 
+    public List<SaveObject> saveObjects = new List<SaveObject>();
+
 
     private void Awake ( ) {
         if(instance == null) {
@@ -41,12 +46,8 @@ public class GameManager : MonoBehaviour {
         } else {
             Destroy(gameObject); // Only one GameManager instance allowed
         }
+        Time.timeScale = 1;
 
-        // Load final score and time from PlayerPrefs on Awake
-        finalScore = PlayerPrefs.GetInt("FinalScore", 0);
-        float savedTime = PlayerPrefs.GetFloat("FinalTime", 0f);
-        timer.finalTime = savedTime;
-        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(savedTime / 60), Mathf.FloorToInt(savedTime % 60));
     }
 
     public void OnItemCollected ( ) // Update collected items from other scripts
@@ -89,13 +90,43 @@ public class GameManager : MonoBehaviour {
         MrBeast.SetActive(false);
         Rain.Stop();
         timer.StopTimer();
-        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
-        finalBars.text = string.Format("Colectebles: {0} / {1}", finalScore, totalScore);
 
-        // Save final score and time to PlayerPrefs on game win
-        PlayerPrefs.SetInt("FinalScore", finalScore);
-        PlayerPrefs.SetFloat("FinalTime", timer.elapsedTime);
+        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
+        finalBars.text = string.Format("Collectables: {0} / {1}", finalScore, totalScore);
+
+        // Load existing data to compare
+        SaveObject existingSaveData = LoadSaveData(SceneManager.GetActiveScene().buildIndex);
+
+        if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore) {
+            // Create new save data if better
+            SaveObject levelSaveData = new SaveObject {
+                finalTime = timer.finalTime,
+                finalScore = finalScore,
+                levelName = SceneManager.GetActiveScene().buildIndex
+            };
+
+            // Add the level data to the list
+            saveObjects.Add(levelSaveData);
+
+            string json = JsonUtility.ToJson(levelSaveData); // Save all level data
+            File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
+        }
     }
+
+    private SaveObject LoadSaveData ( int levelIndex ) {
+        string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
+
+        if(File.Exists(filePath)) {
+            string saveString = File.ReadAllText(filePath);
+            return JsonUtility.FromJson<SaveObject>(saveString);
+        }
+
+        return null;
+    }
+
+
+
+
 
     public void GameOver ( ) {
         Gameover.SetActive(true);
@@ -103,20 +134,44 @@ public class GameManager : MonoBehaviour {
         MrBeast.SetActive(false);
         GameOverSound.Play();
         Rain.Stop();
-
-        // Reset PlayerPrefs on game over (optional)
-        
-         PlayerPrefs.DeleteKey("FinalTime");
+      
     }
-
-
 
 
     public void RestartGame ( ) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
-        // Reset PlayerPrefs on restart (optional)
-        // PlayerPrefs.DeleteKey("FinalScore");
-        // PlayerPrefs.DeleteKey("FinalTime");
+    public void GoToMainMenu ( ) {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    [Serializable]
+    public class SaveObject {
+        public float finalTime;
+        public int finalScore;
+        public int levelName;
     }
 }
+
+
+
+
+// Save final score and time to PlayerPrefs on game win
+/*        if(finalScore > PlayerPrefs.GetInt("FinalScore", 0)) {
+            PlayerPrefs.SetInt("FinalScore", finalScore);
+        }
+        if (PlayerPrefs.HasKey("FinalTime"))
+        {
+            Debug.Log("there is save");
+            if(timer.finalTime < PlayerPrefs.GetFloat("FinalTime", 0f)) {
+                PlayerPrefs.SetFloat("FinalTime", timer.finalTime);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("FinalTime", timer.finalTime);
+            Debug.Log("no save" + PlayerPrefs.GetFloat("FinalTime", 0f));
+
+        }*/
+

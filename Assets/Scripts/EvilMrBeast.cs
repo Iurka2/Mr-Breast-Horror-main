@@ -21,6 +21,7 @@ public class EvilMrBeast : MonoBehaviour {
 
     private GameManager gameManager;
     public FlashLightManager flashLight;
+    [SerializeField] private FirstPersonMovement playermovement;
 
     // States
     public float sightRange;
@@ -41,9 +42,13 @@ public class EvilMrBeast : MonoBehaviour {
         agent.destination = player.transform.position;
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
-        if(flashLight.flashLightIsOn) {
+        if(playermovement.IsRunning) {
             sightRange = 9;
-        } else {
+        } else if (playermovement.IsWalking()) {
+            sightRange = 5;
+        }
+        else
+        {
             sightRange = 3;
         }
 
@@ -55,15 +60,16 @@ public class EvilMrBeast : MonoBehaviour {
         }
 
         // Check if player is not in sight and enough time has passed
-        if(!playerInSightRange && Time.time - lastPlayerSightTime > 3f) {
+        if(!playerInSightRange && Time.time - lastPlayerSightTime > 4f) {
             Patrol();
         } else if(playerInSightRange) {
             ChasePlayer();
         }
 
         if(Vector3.Distance(transform.position, target) < 1) {
-            IterateWaypointIndex();
             Patrol();
+            IterateWaypointIndex();
+           
         }
     }
 
@@ -82,17 +88,17 @@ public class EvilMrBeast : MonoBehaviour {
 
     void IterateWaypointIndex ( ) {
         waypointIndex++;
-        if(waypointIndex == waypoints.Length) {
+        if(waypointIndex >= waypoints.Length) {
             waypointIndex = 0;
         }
 
         // Check if this is the third waypoint
         if(waypointIndex % 3 == 0) {
-            PerformSpecificAction();
+            StopForTime();
         }
     }
 
-    void PerformSpecificAction ( ) {
+    void StopForTime ( ) {
         // Start the wait coroutine
         StartCoroutine(WaitAtWaypoint(7f)); // Wait for 3 seconds (adjust as needed)
     }
@@ -115,6 +121,7 @@ public class EvilMrBeast : MonoBehaviour {
         if(other.gameObject.tag == "Player") {
             // Call the GameOver function from GameManager
             gameManager.GameOver();
+            evilMusic.Pause();
         }
     }
 

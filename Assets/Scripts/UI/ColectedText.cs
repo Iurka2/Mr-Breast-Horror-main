@@ -9,6 +9,7 @@ public class ColectedText : MonoBehaviour
     public int count;
     public int final;
     public int finalScore;
+    
     private void Awake ( ) {
         text = GetComponent<TMPro.TMP_Text>();
     }
