@@ -5,13 +5,16 @@ using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 using UnityEngine.SceneManagement;
-using static GameManager;
+using UnityEngine.Timeline;
+using UnityEngine.Playables;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance; // Singleton instance
     public int collectedItems;
+    public int collectedSecrets;
     public int keycount;// Track collected items centrally
     public int totalScore;
     public int finalScore;
@@ -26,7 +29,6 @@ public class GameManager : MonoBehaviour {
     [SerializeField] TextMeshProUGUI finalTimerTime;
     [SerializeField] TextMeshProUGUI finalBars;
 
-
     [SerializeField] GameObject Gameover;
     [SerializeField] GameObject GG;
     [SerializeField] GameObject Player;
@@ -34,11 +36,11 @@ public class GameManager : MonoBehaviour {
     [SerializeField] GameObject MrBeast;
     [SerializeField] TimerTimer timer;
     [SerializeField] ColectedText colectedText;
-
     [SerializeField] private float displayTime = 2f;
 
-    public List<SaveObject> saveObjects = new List<SaveObject>();
+    [SerializeField] private PlayableDirector gameOverCutscene; // Reference to the PlayableDirector component
 
+    public List<SaveObject> saveObjects = new List<SaveObject>();
 
     private void Awake ( ) {
         if(instance == null) {
@@ -47,7 +49,14 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject); // Only one GameManager instance allowed
         }
         Time.timeScale = 1;
+    }
 
+    private void Start ( ) {
+        gameOverCutscene.stopped += OnCutsceneStopped; // Subscribe to the stopped event
+    }
+
+    private void OnDestroy ( ) {
+        gameOverCutscene.stopped -= OnCutsceneStopped; // Unsubscribe from the stopped event
     }
 
     public void OnItemCollected ( ) // Update collected items from other scripts
@@ -62,6 +71,10 @@ public class GameManager : MonoBehaviour {
             Key.SetActive(true);
         }
         finalScore = collectedItems;
+    }
+
+    public void onSecretColected ( ) {
+        collectedSecrets++;
     }
 
     public void OnKeyCollected ( ) {
@@ -83,7 +96,6 @@ public class GameManager : MonoBehaviour {
         runText.enabled = false; // Disable the text
     }
 
-
     public void Gg ( ) {
         GG.SetActive(true);
         Player.SetActive(false);
@@ -97,12 +109,13 @@ public class GameManager : MonoBehaviour {
         // Load existing data to compare
         SaveObject existingSaveData = LoadSaveData(SceneManager.GetActiveScene().buildIndex);
 
-        if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore) {
+        if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore || collectedSecrets > existingSaveData.secrets) {
             // Create new save data if better
             SaveObject levelSaveData = new SaveObject {
                 finalTime = timer.finalTime,
                 finalScore = finalScore,
-                levelName = SceneManager.GetActiveScene().buildIndex
+                levelName = SceneManager.GetActiveScene().buildIndex,
+                secrets = collectedSecrets
             };
 
             // Add the level data to the list
@@ -124,19 +137,24 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
-
-
-
-
     public void GameOver ( ) {
-        Gameover.SetActive(true);
-        Player.SetActive(false);
+       
+
+        
+        
         MrBeast.SetActive(false);
         GameOverSound.Play();
         Rain.Stop();
-      
+
+        // Play the cutscene
+        gameOverCutscene.Play();
     }
 
+    private void OnCutsceneStopped ( PlayableDirector director ) {
+        if(director == gameOverCutscene) {
+            Gameover.SetActive(true);
+        }
+    }
 
     public void RestartGame ( ) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -151,27 +169,6 @@ public class GameManager : MonoBehaviour {
         public float finalTime;
         public int finalScore;
         public int levelName;
+        public int secrets;
     }
 }
-
-
-
-
-// Save final score and time to PlayerPrefs on game win
-/*        if(finalScore > PlayerPrefs.GetInt("FinalScore", 0)) {
-            PlayerPrefs.SetInt("FinalScore", finalScore);
-        }
-        if (PlayerPrefs.HasKey("FinalTime"))
-        {
-            Debug.Log("there is save");
-            if(timer.finalTime < PlayerPrefs.GetFloat("FinalTime", 0f)) {
-                PlayerPrefs.SetFloat("FinalTime", timer.finalTime);
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("FinalTime", timer.finalTime);
-            Debug.Log("no save" + PlayerPrefs.GetFloat("FinalTime", 0f));
-
-        }*/
-

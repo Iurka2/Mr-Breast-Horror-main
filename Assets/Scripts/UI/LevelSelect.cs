@@ -95,7 +95,7 @@ public class LevelSelect : MonoBehaviour {
             // Update UI elements with the loaded data
             bestTimes[levelIndex].text = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(saveObject.finalTime / 60), Mathf.FloorToInt(saveObject.finalTime % 60));
             collectables[levelIndex].text = string.Format("{0}", saveObject.finalScore);
-     /*       secrets[levelIndex].text = string.Format("Level: {0}", saveObject.levelIndex);*/
+            secrets[levelIndex].text = string.Format("{0}", saveObject.secrets);
         } else {
             Debug.LogWarning("Save file for level " + levelIndex + " not found!");
         }

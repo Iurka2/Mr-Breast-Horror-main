@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Playables;
 
 public class EvilMrBeast : MonoBehaviour {
-
     public GameObject player;
     public NavMeshAgent agent;
 
@@ -22,16 +21,21 @@ public class EvilMrBeast : MonoBehaviour {
     private GameManager gameManager;
     public FlashLightManager flashLight;
     [SerializeField] private FirstPersonMovement playermovement;
-
+    [SerializeField] private PlayableDirector jumpScare;
+    [SerializeField] private AudioSource jumpscareSound;
+    [SerializeField] private Camera playerCamera;
     // States
     public float sightRange;
     public bool playerInSightRange;
+    private float timeSinceLastSeenPlayer;
+    public float timeToLosePlayer = 4f; // Time to wait before going back to patrol
 
-    private float lastPlayerSightTime = Mathf.NegativeInfinity; // Keeps track of the last time player was seen
+    private Coroutine waitCoroutine;
 
     private void Start ( ) {
         agent = GetComponent<NavMeshAgent>();
         gameManager = GameManager.instance;
+        jumpScare = GetComponent<PlayableDirector>();
     }
 
     void FootEvent ( int whichFoot ) {
@@ -39,37 +43,35 @@ public class EvilMrBeast : MonoBehaviour {
     }
 
     private void Update ( ) {
-        agent.destination = player.transform.position;
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
         if(playermovement.IsRunning) {
             sightRange = 9;
-        } else if (playermovement.IsWalking()) {
+        } else if(playermovement.IsWalking()) {
             sightRange = 5;
-        }
-        else
-        {
-            sightRange = 3;
+        } else {
+            sightRange = 1;
         }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
-        // Update lastPlayerSightTime if player is in sight
         if(playerInSightRange) {
-            lastPlayerSightTime = Time.time;
-        }
-
-        // Check if player is not in sight and enough time has passed
-        if(!playerInSightRange && Time.time - lastPlayerSightTime > 4f) {
-            Patrol();
-        } else if(playerInSightRange) {
+            timeSinceLastSeenPlayer = 0f; // Reset the timer
+            if(waitCoroutine != null) {
+                StopCoroutine(waitCoroutine);
+                agent.isStopped = false;
+            }
             ChasePlayer();
+        } else {
+            timeSinceLastSeenPlayer += Time.deltaTime;
+            if(timeSinceLastSeenPlayer > timeToLosePlayer) {
+                Patrol();
+            }
         }
 
         if(Vector3.Distance(transform.position, target) < 1) {
             Patrol();
             IterateWaypointIndex();
-           
         }
     }
 
@@ -77,6 +79,7 @@ public class EvilMrBeast : MonoBehaviour {
         agent.SetDestination(player.transform.position);
         if(!evilMusic.isPlaying) {
             evilMusic.Play();
+           
         }
     }
 
@@ -99,8 +102,11 @@ public class EvilMrBeast : MonoBehaviour {
     }
 
     void StopForTime ( ) {
+        if(waitCoroutine != null) {
+            StopCoroutine(waitCoroutine);
+        }
         // Start the wait coroutine
-        StartCoroutine(WaitAtWaypoint(7f)); // Wait for 3 seconds (adjust as needed)
+        waitCoroutine = StartCoroutine(WaitAtWaypoint(7f)); // Wait for 7 seconds (adjust as needed)
     }
 
     IEnumerator WaitAtWaypoint ( float waitTime ) {
@@ -115,13 +121,30 @@ public class EvilMrBeast : MonoBehaviour {
         agent.isStopped = false;
         Animator.SetBool(ISWALKING, true);
         Patrol();  // Ensure the agent resumes patrolling
+
+      /*  waitCoroutine = null;*/ // Clear the coroutine reference
+    }
+
+
+
+    private void TriggerJumpscare ( ) {
+ 
+        jumpscareSound.Play();
+        
+
+        // Make the player's camera look at the monster's face
+        Vector3 directionToMonster = transform.position - playerCamera.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToMonster);
+        playerCamera.transform.rotation = lookRotation;
     }
 
     private void OnTriggerEnter ( Collider other ) {
         if(other.gameObject.tag == "Player") {
-            // Call the GameOver function from GameManager
+
+            TriggerJumpscare();
             gameManager.GameOver();
             evilMusic.Pause();
+        
         }
     }
 
