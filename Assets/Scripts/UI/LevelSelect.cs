@@ -65,13 +65,13 @@ public class LevelSelect : MonoBehaviour {
             Loader.Load(Loader.Scene.LVL1);
         });
 
-        LVL2Play.onClick.AddListener(( ) => {
+/*        LVL2Play.onClick.AddListener(( ) => {
             Loader.Load(Loader.Scene.LVL2);
         });
 
         LVL3Play.onClick.AddListener(( ) => {
             Loader.Load(Loader.Scene.LVL3);
-        });
+        });*/
 
     }
 
@@ -93,7 +93,7 @@ public class LevelSelect : MonoBehaviour {
             SaveObject saveObject = JsonUtility.FromJson<SaveObject>(saveString);
 
             // Update UI elements with the loaded data
-            bestTimes[levelIndex].text = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(saveObject.finalTime / 60), Mathf.FloorToInt(saveObject.finalTime % 60));
+            bestTimes[levelIndex].text = string.Format(" {0:00}:{1:00}", Mathf.FloorToInt(saveObject.finalTime / 60), Mathf.FloorToInt(saveObject.finalTime % 60));
             collectables[levelIndex].text = string.Format("{0}", saveObject.finalScore);
             secrets[levelIndex].text = string.Format("{0}", saveObject.secrets);
         } else {

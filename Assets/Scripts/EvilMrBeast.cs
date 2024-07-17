@@ -19,11 +19,8 @@ public class EvilMrBeast : MonoBehaviour {
     [SerializeField] private AudioSource evilMusic;
 
     private GameManager gameManager;
-    public FlashLightManager flashLight;
     [SerializeField] private FirstPersonMovement playermovement;
-    [SerializeField] private PlayableDirector jumpScare;
-    [SerializeField] private AudioSource jumpscareSound;
-    [SerializeField] private Camera playerCamera;
+ 
     // States
     public float sightRange;
     public bool playerInSightRange;
@@ -35,7 +32,7 @@ public class EvilMrBeast : MonoBehaviour {
     private void Start ( ) {
         agent = GetComponent<NavMeshAgent>();
         gameManager = GameManager.instance;
-        jumpScare = GetComponent<PlayableDirector>();
+       
     }
 
     void FootEvent ( int whichFoot ) {
@@ -127,21 +124,11 @@ public class EvilMrBeast : MonoBehaviour {
 
 
 
-    private void TriggerJumpscare ( ) {
- 
-        jumpscareSound.Play();
-        
-
-        // Make the player's camera look at the monster's face
-        Vector3 directionToMonster = transform.position - playerCamera.transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(directionToMonster);
-        playerCamera.transform.rotation = lookRotation;
-    }
 
     private void OnTriggerEnter ( Collider other ) {
         if(other.gameObject.tag == "Player") {
 
-            TriggerJumpscare();
+        
             gameManager.GameOver();
             evilMusic.Pause();
         

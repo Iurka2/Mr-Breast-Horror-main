@@ -96,6 +96,49 @@ public class GameManager : MonoBehaviour {
         runText.enabled = false; // Disable the text
     }
 
+    /*    public void Gg ( ) {
+            GG.SetActive(true);
+            Player.SetActive(false);
+            MrBeast.SetActive(false);
+            Rain.Stop();
+            timer.StopTimer();
+
+            finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
+            finalBars.text = string.Format("Collectables: {0} / {1}", finalScore, totalScore);
+
+            // Load existing data to compare
+            SaveObject existingSaveData = LoadSaveData(SceneManager.GetActiveScene().buildIndex);
+
+            if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore || collectedSecrets > existingSaveData.secrets) {
+                // Create new save data if better
+                SaveObject levelSaveData = new SaveObject {
+                    finalTime = timer.finalTime,
+                    finalScore = finalScore,
+                    levelName = SceneManager.GetActiveScene().buildIndex,
+                    secrets = collectedSecrets
+                };
+
+
+
+                // Add the level data to the list
+                saveObjects.Add(levelSaveData);
+
+                string json = JsonUtility.ToJson(levelSaveData); // Save all level data
+                File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
+            }
+        }
+
+        private SaveObject LoadSaveData ( int levelIndex ) {
+            string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
+
+            if(File.Exists(filePath)) {
+                string saveString = File.ReadAllText(filePath);
+                return JsonUtility.FromJson<SaveObject>(saveString);
+            }
+
+            return null;
+        }*/
+
     public void Gg ( ) {
         GG.SetActive(true);
         Player.SetActive(false);
@@ -109,17 +152,18 @@ public class GameManager : MonoBehaviour {
         // Load existing data to compare
         SaveObject existingSaveData = LoadSaveData(SceneManager.GetActiveScene().buildIndex);
 
-        if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore || collectedSecrets > existingSaveData.secrets) {
-            // Create new save data if better
-            SaveObject levelSaveData = new SaveObject {
-                finalTime = timer.finalTime,
-                finalScore = finalScore,
-                levelName = SceneManager.GetActiveScene().buildIndex,
-                secrets = collectedSecrets
-            };
+        bool newBestTime = existingSaveData == null || timer.finalTime < existingSaveData.finalTime;
+        bool newBestScore = existingSaveData == null || finalScore > existingSaveData.finalScore;
+        bool newBestSecrets = existingSaveData == null || collectedSecrets > existingSaveData.secrets;
 
-            // Add the level data to the list
-            saveObjects.Add(levelSaveData);
+        if(newBestTime || newBestScore) {
+            // Update save data only if there is a new best time or score
+            SaveObject levelSaveData = new SaveObject {
+                finalTime = newBestTime ? timer.finalTime : existingSaveData.finalTime,
+                finalScore = newBestScore ? finalScore : existingSaveData.finalScore,
+                secrets = newBestSecrets ? collectedSecrets : existingSaveData.secrets,
+                levelName = SceneManager.GetActiveScene().buildIndex
+            };
 
             string json = JsonUtility.ToJson(levelSaveData); // Save all level data
             File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
