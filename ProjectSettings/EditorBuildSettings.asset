@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: c4d69f15d12725842945d638b9fba643
   - enabled: 1
     path: Assets/Scenes/LVL2.unity
-    guid: 6b87d1de844fc0846afb7b1a4590d2b3
+    guid: d54bcaeab1b9edd409631b998dae8bdf
   - enabled: 1
     path: Assets/Scenes/LVL3.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
@@ -21,5 +21,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadingScreen.unity
     guid: 509b0c179d57bd34ea8266435d8e81f1
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
+      guid: 510b4cd8814f74b438b677521541c1c3, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1d6f49c7404f3a64da85e21f87010493,
+      type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 6ed62b77217def34994fdea0d9b9c2aa, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 9df8eb2e4960d064ca85b7ddc1ddd6d0, type: 2}

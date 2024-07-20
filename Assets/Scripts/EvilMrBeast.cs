@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class EvilMrBeast : MonoBehaviour {
     public GameObject player;
     public NavMeshAgent agent;
-
+    public Vector3 offset;
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Transform[] waypoints;
@@ -43,14 +43,20 @@ public class EvilMrBeast : MonoBehaviour {
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
         if(playermovement.IsRunning) {
-            sightRange = 9;
-        } else if(playermovement.IsWalking()) {
-            sightRange = 5;
+            sightRange = 7;
+        } else if(playermovement.isFullWalking) {
+            sightRange = 3.5f;
+        } else if(playermovement.isMediumWalking) {
+            sightRange = 2.5f;
+        } else if(playermovement.isSlowWalking) {
+            sightRange = 1.5f;
         } else {
-            sightRange = 1;
+            sightRange = 0.5f;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        offset = transform.position + new Vector3(0f,1f,0f);
+
+        playerInSightRange = Physics.CheckSphere(offset, sightRange, whatIsPlayer);
 
         if(playerInSightRange) {
             timeSinceLastSeenPlayer = 0f; // Reset the timer
@@ -137,6 +143,6 @@ public class EvilMrBeast : MonoBehaviour {
 
     private void OnDrawGizmosSelected ( ) {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.DrawWireSphere(offset, sightRange);
     }
 }
