@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-/*    [SerializeField] private GameInput gameInput;*/
-    private float moveSpeed = 2f;
 
+   [SerializeField] private float moveSpeed = 2f;
+    
     public Transform orientation;
 
     float horizontalInput;

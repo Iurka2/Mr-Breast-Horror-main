@@ -85,7 +85,7 @@ public class LevelSelect : MonoBehaviour {
     }
 
     private void LoadSaveData ( int levelIndex ) {
-        string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
+        string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelIndex + ".txt");
 
         if(File.Exists(filePath)) {
             string saveString = File.ReadAllText(filePath);

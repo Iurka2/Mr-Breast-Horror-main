@@ -43,15 +43,15 @@ public class EvilMrBeast : MonoBehaviour {
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
         if(playermovement.IsRunning) {
-            sightRange = 7;
+            sightRange = 6;
         } else if(playermovement.isFullWalking) {
-            sightRange = 3.5f;
+            sightRange = 4.5f;
         } else if(playermovement.isMediumWalking) {
-            sightRange = 2.5f;
+            sightRange = 3.5f;
         } else if(playermovement.isSlowWalking) {
-            sightRange = 1.5f;
+            sightRange = 2.5f;
         } else {
-            sightRange = 0.5f;
+            sightRange = 1.5f;
         }
 
         offset = transform.position + new Vector3(0f,1f,0f);

@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject); // Only one GameManager instance allowed
         }
         Time.timeScale = 1;
+
+        Screen.SetResolution(480, 240, true);
     }
 
     private void Start ( ) {
@@ -96,48 +98,6 @@ public class GameManager : MonoBehaviour {
         runText.enabled = false; // Disable the text
     }
 
-    /*    public void Gg ( ) {
-            GG.SetActive(true);
-            Player.SetActive(false);
-            MrBeast.SetActive(false);
-            Rain.Stop();
-            timer.StopTimer();
-
-            finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
-            finalBars.text = string.Format("Collectables: {0} / {1}", finalScore, totalScore);
-
-            // Load existing data to compare
-            SaveObject existingSaveData = LoadSaveData(SceneManager.GetActiveScene().buildIndex);
-
-            if(existingSaveData == null || timer.finalTime < existingSaveData.finalTime || finalScore > existingSaveData.finalScore || collectedSecrets > existingSaveData.secrets) {
-                // Create new save data if better
-                SaveObject levelSaveData = new SaveObject {
-                    finalTime = timer.finalTime,
-                    finalScore = finalScore,
-                    levelName = SceneManager.GetActiveScene().buildIndex,
-                    secrets = collectedSecrets
-                };
-
-
-
-                // Add the level data to the list
-                saveObjects.Add(levelSaveData);
-
-                string json = JsonUtility.ToJson(levelSaveData); // Save all level data
-                File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
-            }
-        }
-
-        private SaveObject LoadSaveData ( int levelIndex ) {
-            string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
-
-            if(File.Exists(filePath)) {
-                string saveString = File.ReadAllText(filePath);
-                return JsonUtility.FromJson<SaveObject>(saveString);
-            }
-
-            return null;
-        }*/
 
     public void Gg ( ) {
         GG.SetActive(true);
@@ -166,12 +126,13 @@ public class GameManager : MonoBehaviour {
             };
 
             string json = JsonUtility.ToJson(levelSaveData); // Save all level data
-            File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
+            string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelSaveData.levelName + ".txt");
+            File.WriteAllText(filePath, json);
         }
     }
 
     private SaveObject LoadSaveData ( int levelIndex ) {
-        string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
+        string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelIndex + ".txt");
 
         if(File.Exists(filePath)) {
             string saveString = File.ReadAllText(filePath);
