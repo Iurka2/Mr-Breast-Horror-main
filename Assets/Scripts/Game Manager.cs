@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour {
 
 
     public void Gg ( ) {
+
+
         GG.SetActive(true);
         Player.SetActive(false);
         MrBeast.SetActive(false);
@@ -129,7 +131,13 @@ public class GameManager : MonoBehaviour {
             string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelSaveData.levelName + ".txt");
             File.WriteAllText(filePath, json);
         }
+        PublishingEvents.events.Win.Invoke();
     }
+
+
+
+
+
 
     private SaveObject LoadSaveData ( int levelIndex ) {
         string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelIndex + ".txt");
@@ -142,17 +150,15 @@ public class GameManager : MonoBehaviour {
         return null;
     }
 
-    public void GameOver ( ) {
-       
-
-        
-        
+    public void GameOver ( ) { 
         MrBeast.SetActive(false);
         GameOverSound.Play();
         Rain.Stop();
 
         // Play the cutscene
         gameOverCutscene.Play();
+        PublishingEvents.events.Lost.Invoke();
+
     }
 
     private void OnCutsceneStopped ( PlayableDirector director ) {
