@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+  <androidPackages>
+    <repositories>
+      <repository>https://sdkpkg.sspnet.tech</repository>
+    </repositories>
+    <androidPackage spec="com.cleveradssolutions:madex:1.5.1.0" version="1.5.1.0"/>
+  </androidPackages>
+</dependencies>
