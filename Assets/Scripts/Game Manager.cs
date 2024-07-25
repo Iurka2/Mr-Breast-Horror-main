@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private AudioSource Rain;
 
     [SerializeField] TextMeshProUGUI runText;
+    [SerializeField] TextMeshProUGUI goToExitText;
     [SerializeField] TextMeshProUGUI finalTimerTime;
     [SerializeField] TextMeshProUGUI finalBars;
 
@@ -78,9 +79,14 @@ public class GameManager : MonoBehaviour {
     public void onSecretColected ( ) {
         collectedSecrets++;
     }
-
+    private IEnumerator HideTextAfterDelay ( float delay ) {
+        yield return new WaitForSeconds(delay);
+        goToExitText.enabled = false;
+    }
     public void OnKeyCollected ( ) {
         keycount++;
+        goToExitText.enabled = true;
+        StartCoroutine(HideTextAfterDelay(displayTime));
     }
 
     private void ActivateMrBeast ( ) {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private Button playButon;
     [SerializeField] private Button pauseButton;
+    [SerializeField] private Button restartlvl;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button quitButton;
 
@@ -15,6 +17,10 @@ public class PauseMenu : MonoBehaviour
     private void Awake ( ) {
         mainMenuButton.onClick.AddListener(( ) => {
             Loader.Load(Loader.Scene.MainMenu);
+        });
+
+        restartlvl.onClick.AddListener(( ) => {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
 
         playButon.onClick.AddListener(( ) => {

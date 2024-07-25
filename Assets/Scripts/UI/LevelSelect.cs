@@ -65,11 +65,11 @@ public class LevelSelect : MonoBehaviour {
             Loader.Load(Loader.Scene.LVL1);
         });
 
-/*        LVL2Play.onClick.AddListener(( ) => {
+        LVL2Play.onClick.AddListener(( ) => {
             Loader.Load(Loader.Scene.LVL2);
         });
 
-        LVL3Play.onClick.AddListener(( ) => {
+/*        LVL3Play.onClick.AddListener(( ) => {
             Loader.Load(Loader.Scene.LVL3);
         });*/
 
