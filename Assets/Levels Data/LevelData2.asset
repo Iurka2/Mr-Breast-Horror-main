@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c149d95f6d3af8438b7f032c6d1fd9a, type: 3}
+  m_Name: LevelData2
+  m_EditorClassIdentifier: 
+  levelNumber: 2
+  goldTime: 90
+  silverTime: 180
+  bronzeTime: 300
+  goldScore: 5
+  silverScore: 3
+  bronzeScore: 1

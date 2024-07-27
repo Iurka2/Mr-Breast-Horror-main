@@ -20468,6 +20468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11276114f4f2d04bb823b02b7a48e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDataArray:
+  - {fileID: 11400000, guid: 5cbc1e6bc2dee1b4ca9c310fa6ae89bd, type: 2}
   collectedItems: 0
   collectedSecrets: 0
   keycount: 0
@@ -20482,6 +20484,8 @@ MonoBehaviour:
   goToExitText: {fileID: 1982259248}
   finalTimerTime: {fileID: 632558044}
   finalBars: {fileID: 1809454147}
+  newBest: {fileID: 0}
+  newBest2: {fileID: 0}
   Gameover: {fileID: 475965071}
   GG: {fileID: 407550395}
   Player: {fileID: 1317735110}
