@@ -163,10 +163,10 @@ public class GameManager : MonoBehaviour {
 
             string json = JsonUtility.ToJson(levelSaveData); // Save all level data
 
-            /*            string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelSaveData.levelName + ".txt");
-            */
-            /*    File.WriteAllText(filePath, json);*/
-            File.WriteAllText(Application.dataPath + "/save_" + levelSaveData.levelName + ".txt", json);
+            string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelSaveData.levelName + ".txt");
+
+            File.WriteAllText(filePath, json);
+
         }
         PublishingEvents.events.Win.Invoke();
     }
@@ -199,9 +199,9 @@ public class GameManager : MonoBehaviour {
 
 
     private SaveObject LoadSaveData ( int levelIndex ) {
-        string filePath = Application.dataPath + "/save_" + levelIndex + ".txt";
-        /*        string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelIndex + ".txt");
-        */
+
+        string filePath = Path.Combine(Application.persistentDataPath, "save_" + levelIndex + ".txt");
+
         if(File.Exists(filePath)) {
             string saveString = File.ReadAllText(filePath);
             return JsonUtility.FromJson<SaveObject>(saveString);
