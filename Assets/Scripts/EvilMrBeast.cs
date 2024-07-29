@@ -7,7 +7,7 @@ using UnityEngine.Playables;
 public class EvilMrBeast : MonoBehaviour {
     public GameObject player;
     public NavMeshAgent agent;
-    public Vector3 offset;
+    Vector3 offset;
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Transform[] waypoints;
@@ -43,18 +43,18 @@ public class EvilMrBeast : MonoBehaviour {
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
         if(playermovement.IsRunning) {
-            sightRange = 6;
+            sightRange = 5;
         } else if(playermovement.isFullWalking) {
-            sightRange = 4.5f;
+            sightRange = 4f;
         } else if(playermovement.isMediumWalking) {
-            sightRange = 3.5f;
+            sightRange = 3f;
         } else if(playermovement.isSlowWalking) {
-            sightRange = 2.5f;
+            sightRange = 2f;
         } else {
-            sightRange = 1.5f;
+            sightRange = 0.5f;
         }
 
-        offset = transform.position + new Vector3(0f,1f,0f);
+        offset = transform.position + new Vector3(0f,2f,0f);
 
         playerInSightRange = Physics.CheckSphere(offset, sightRange, whatIsPlayer);
 

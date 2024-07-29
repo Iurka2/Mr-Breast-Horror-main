@@ -1,1 +1,1 @@
-{"finalTime":29.084877014160158,"finalScore":1,"levelName":1,"secrets":0}
+{"finalTime":20.513200759887697,"finalScore":5,"levelName":1,"secrets":1,"timeMedal":3,"scoreMedal":3}

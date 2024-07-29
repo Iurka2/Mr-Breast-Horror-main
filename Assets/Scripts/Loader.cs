@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class Loader 
-{
+public static class Loader {
     public enum Scene {
         MainMenu,
         LVL1,
@@ -15,7 +14,7 @@ public static class Loader
 
     private static Scene targetScene;
 
-    public static void Load(Scene targetScene ) {
+    public static void Load ( Scene targetScene ) {
         Loader.targetScene = targetScene;
 
         SceneManager.LoadScene(Scene.LoadingScreen.ToString());
@@ -28,3 +27,5 @@ public static class Loader
 
 
 }
+
+
