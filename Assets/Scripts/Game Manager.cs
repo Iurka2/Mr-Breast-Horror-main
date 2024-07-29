@@ -230,10 +230,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RestartGame ( ) {
+        PublishingEvents.events.Interstitial.Invoke();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GoToMainMenu ( ) {
+        PublishingEvents.events.Interstitial.Invoke();
         SceneManager.LoadScene("MainMenu");
     }
 

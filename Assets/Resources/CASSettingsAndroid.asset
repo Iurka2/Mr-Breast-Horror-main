@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testAdMode: 1
   managerIds:
-  - demo
+  - com.moonteam.EscapeFromMrBeast2
   allowedAdFlags: 7
   audienceTagged: 2
   bannerSize: 0
-  bannerRefresh: 10
+  bannerRefresh: 0
   interstitialInterval: 30
   loadingMode: 2
   debugMode: 0

@@ -25,7 +25,7 @@ public class CASManager : MonoBehaviour
 
     private void Start()
     {
-        PublishingEvents.events.Lost.AddListener(ShowInterstitial);
+        PublishingEvents.events.Interstitial.AddListener(ShowInterstitial);
         PublishingEvents.events.RewardedAd.AddListener(ShowRewarded);
 
         interstitialAd = GetComponent<InterstitialAdObject>();

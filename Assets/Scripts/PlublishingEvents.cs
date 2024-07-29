@@ -12,4 +12,5 @@ public class Events {
     public UnityEvent Win = new();
     public UnityEvent Lost = new(); 
     public UnityEvent RewardedAd = new();
+    public UnityEvent Interstitial = new();
 }
