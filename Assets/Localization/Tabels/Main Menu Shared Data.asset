@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Main Menu Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Main Menu
+  m_TableCollectionNameGuidString: 8fdc06c74f0566245959fd5d74fdf112
+  m_Entries:
+  - m_Id: 460858396672
+    m_Key: 'play_menu
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6246544248832
+    m_Key: Quit_Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6834837327872
+    m_Key: NewLvl_Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9637446094848
+    m_Key: Select_Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10171301302272
+    m_Key: 'BestTime_Menu
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12221133164544
+    m_Key: Colectables_Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12566353743872
+    m_Key: Secrets_Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20740817358848
+    m_Key: Resume_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21346432913408
+    m_Key: Pause_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21739124625408
+    m_Key: Restart_pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36234354036736
+    m_Key: MainMenu_Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36450905952256
+    m_Key: YouDead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39169062408192
+    m_Key: TryAgain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40067918532608
+    m_Key: YouWin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42832229109760
+    m_Key: FinalTime
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44737789497344
+    m_Key: Play Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45212391772160
+    m_Key: NewScore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47161094770688
+    m_Key: 'Find Exit
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60293536092160
+    m_Key: I Hear
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 8401705509922799640
+  references:
+    version: 2
+    RefIds:
+    - rid: 8401705509922799640
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1722420217440

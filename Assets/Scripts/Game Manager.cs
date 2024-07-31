@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour {
         Rain.Stop();
         timer.StopTimer();
 
-        finalTimerTime.text = string.Format("Final Time: {0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
-        finalBars.text = string.Format("Collectables: {0} / {1}", finalScore, totalScore);
+        finalTimerTime.text = string.Format("{0:00}:{1:00}", Mathf.FloorToInt(timer.elapsedTime / 60), Mathf.FloorToInt(timer.elapsedTime % 60));
+        finalBars.text = string.Format("{0}/{1}", finalScore, totalScore);
 
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
 

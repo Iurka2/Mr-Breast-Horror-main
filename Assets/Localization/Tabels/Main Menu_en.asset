@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Main Menu_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8fdc06c74f0566245959fd5d74fdf112, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 460858396672
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6246544248832
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6834837327872
+    m_Localized: 'New Levels  every week '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9637446094848
+    m_Localized: Select Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10171301302272
+    m_Localized: 'Best Time:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12221133164544
+    m_Localized: 'Collectibles:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12566353743872
+    m_Localized: 'Secrets:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20740817358848
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21346432913408
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21739124625408
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36234354036736
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36450905952256
+    m_Localized: You Dead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39169062408192
+    m_Localized: Try Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40067918532608
+    m_Localized: You Won !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42832229109760
+    m_Localized: 'Final Time:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44737789497344
+    m_Localized: Play Again
+    m_Metadata:
+      m_Items: []
+  - m_Id: 45212391772160
+    m_Localized: New Highscore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47161094770688
+    m_Localized: "Find the \n\n\nExit"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60293536092160
+    m_Localized: I Hear YOU
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
