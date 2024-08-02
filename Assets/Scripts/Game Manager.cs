@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
 
         Screen.SetResolution(480, 240, true);
+        
     }
 
     private void Start ( ) {
@@ -145,6 +146,14 @@ public class GameManager : MonoBehaviour {
         bool newBestTime = existingSaveData == null || timer.finalTime < existingSaveData.finalTime;
         bool newBestScore = existingSaveData == null || finalScore > existingSaveData.finalScore;
         bool newBestSecrets = existingSaveData == null || collectedSecrets > existingSaveData.secrets;
+
+        if(newBestTime) {
+            newBest.enabled = true;
+        }
+
+        if(newBestScore) {
+            newBest2.enabled = true;
+        }
 
 
 
