@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c149d95f6d3af8438b7f032c6d1fd9a, type: 3}
-  m_Name: LevelData2
+  m_Name: LevelData3
   m_EditorClassIdentifier: 
-  levelNumber: 3
-  goldTime: 180
-  silverTime: 320
-  bronzeTime: 400
-  goldScore: 7
-  silverScore: 5
+  levelNumber: 2
+  goldTime: 90
+  silverTime: 180
+  bronzeTime: 300
+  goldScore: 5
+  silverScore: 3
   bronzeScore: 1

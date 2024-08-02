@@ -84,7 +84,7 @@ public class FlashLightManager : MonoBehaviour
         }
     }
     
-    private void ToggleFlashLight ( ) {
+    public void ToggleFlashLight ( ) {
         flashLightIsOn = !flashLightIsOn;
         if (state == FlashLightState.Dead)
         {

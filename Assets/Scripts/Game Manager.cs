@@ -23,14 +23,13 @@ public class GameManager : MonoBehaviour {
     public int keycount;// Track collected items centrally
     public int totalScore;
     public int finalScore;
-    [SerializeField] private int requiredItemsToActivate = 5;
-    [SerializeField] private int requiredItemsForKey = 10;// Number of items needed to activate MrBeast
+    [SerializeField] private int requiredItemsToActivate;
 
     [SerializeField] private AudioSource EvilLaugh;
     [SerializeField] private AudioSource GameOverSound;
     [SerializeField] private AudioSource Rain;
 
-    [SerializeField] TextMeshProUGUI runText;
+    
     [SerializeField] TextMeshProUGUI goToExitText;
     [SerializeField] TextMeshProUGUI finalTimerTime;
     [SerializeField] TextMeshProUGUI finalBars;
@@ -81,14 +80,6 @@ public class GameManager : MonoBehaviour {
     public void OnItemCollected ( ) // Update collected items from other scripts
     {
         collectedItems++;
-        if(collectedItems == requiredItemsToActivate) {
-            ActivateMrBeast();
-            TextApearing();
-        }
-
-        if(collectedItems == requiredItemsForKey) {
-            Key.SetActive(true);
-        }
         finalScore = collectedItems;
     }
 
@@ -103,6 +94,13 @@ public class GameManager : MonoBehaviour {
         keycount++;
         goToExitText.enabled = true;
         StartCoroutine(HideTextAfterDelay(displayTime));
+
+        if(keycount == requiredItemsToActivate) {
+            ActivateMrBeast();
+
+        }
+
+
     }
 
     private void ActivateMrBeast ( ) {
@@ -110,15 +108,7 @@ public class GameManager : MonoBehaviour {
         EvilLaugh.Play();
     }
 
-    private void TextApearing ( ) {
-        runText.enabled = true;
-        StartCoroutine(HideTextAfterDelay());
-    }
 
-    private IEnumerator HideTextAfterDelay ( ) {
-        yield return new WaitForSeconds(displayTime); // Wait for the specified time
-        runText.enabled = false; // Disable the text
-    }
 
 
     public void Gg ( ) {
