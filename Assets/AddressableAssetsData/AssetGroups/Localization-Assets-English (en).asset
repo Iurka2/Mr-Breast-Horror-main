@@ -17,8 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: debdb8f65540c86429b79c54233bbd40
   m_SerializeEntries:
-  - m_GUID: 6a68135d35fd7554ca83ba6744c08861
-    m_Address: TotorialEN
+  - m_GUID: 928896f725d512e49b940338aa6e27b7
+    m_Address: LVL2totorial
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6dda9be7310687e49b53ff36ae442f73
+    m_Address: LVL3totorial
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

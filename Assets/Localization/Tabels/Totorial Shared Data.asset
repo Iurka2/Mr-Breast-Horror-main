@@ -19,6 +19,14 @@ MonoBehaviour:
     m_Key: Totirial
     m_Metadata:
       m_Items: []
+  - m_Id: 1433889252642816
+    m_Key: LVL2Note
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1449685408354304
+    m_Key: LVL3
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 8401705509922799672
@@ -37,6 +45,14 @@ MonoBehaviour:
       data:
         m_Entries:
         - m_KeyId: 49262956544
+          m_TableCodes:
+          - en
+          - ru
+        - m_KeyId: 1433889252642816
+          m_TableCodes:
+          - en
+          - ru
+        - m_KeyId: 1449685408354304
           m_TableCodes:
           - en
           - ru

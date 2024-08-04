@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour {
     {
         collectedItems++;
         finalScore = collectedItems;
+
+        if(collectedItems == requiredItemsToActivate) {
+            ActivateMrBeast();
+
+        }
     }
 
     public void onSecretColected ( ) {
@@ -103,9 +108,13 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    private void ActivateMrBeast ( ) {
-        MrBeast.SetActive(true);
-        EvilLaugh.Play();
+    public void ActivateMrBeast ( ) {
+        if (MrBeast.activeInHierarchy == false)
+        {
+            MrBeast.SetActive(true);
+            EvilLaugh.Play();
+        }
+   
     }
 
 
