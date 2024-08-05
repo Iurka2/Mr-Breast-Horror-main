@@ -24,8 +24,8 @@ public class EvilMrBeast : MonoBehaviour {
     // States
     public float sightRange;
     public bool playerInSightRange;
-    private float timeSinceLastSeenPlayer;
-    public float timeToLosePlayer = 4f; // Time to wait before going back to patrol
+    public float timeSinceLastSeenPlayer;
+    public float timeToLosePlayer; // Time to wait before going back to patrol
 
     private Coroutine waitCoroutine;
 
@@ -43,7 +43,7 @@ public class EvilMrBeast : MonoBehaviour {
         Animator.SetBool(ISWALKING, agent.velocity.magnitude > 0.01f);
 
         if(playermovement.IsRunning) {
-            sightRange = 5;
+            sightRange = 5f;
         } else if(playermovement.isFullWalking) {
             sightRange = 4f;
         } else if(playermovement.isMediumWalking) {

@@ -16,6 +16,9 @@ EditorBuildSettings:
     guid: d54bcaeab1b9edd409631b998dae8bdf
   - enabled: 0
     path: Assets/Scenes/LVL3.unity
+    guid: 337c991f81616c147b5f63816ecc834b
+  - enabled: 0
+    path: Assets/Scenes/LVL4.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
