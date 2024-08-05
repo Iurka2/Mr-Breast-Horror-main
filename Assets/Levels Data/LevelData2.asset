@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c149d95f6d3af8438b7f032c6d1fd9a, type: 3}
   m_Name: LevelData2
   m_EditorClassIdentifier: 
-  levelNumber: 3
+  levelNumber: 2
   goldTime: 180
   silverTime: 320
   bronzeTime: 400
