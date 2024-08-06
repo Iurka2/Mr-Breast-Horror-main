@@ -16,6 +16,6 @@ MonoBehaviour:
   goldTime: 180
   silverTime: 320
   bronzeTime: 400
-  goldScore: 7
-  silverScore: 5
+  goldScore: 5
+  silverScore: 3
   bronzeScore: 1
