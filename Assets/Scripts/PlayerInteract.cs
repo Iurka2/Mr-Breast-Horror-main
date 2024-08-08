@@ -11,6 +11,7 @@ public class PlayerInteract : MonoBehaviour {
     ItemsInteractable interactable;
     [SerializeField] GameObject interactText;
     public GameObject keyNeeded;
+    public float maxDistance = 1.55f;
   
 
 
@@ -24,7 +25,7 @@ public class PlayerInteract : MonoBehaviour {
     public void Interaction () {
      
 
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit,1.55f, interactableLayerMask)) {
+        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit,maxDistance, interactableLayerMask)) {
             interactText.SetActive(true);
             if(hit.collider.GetComponent<ItemsInteractable>() != false) {
 

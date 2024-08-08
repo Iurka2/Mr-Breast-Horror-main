@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ca902007fbc49954b9db0ab4893fe54f
   m_SerializeEntries:
-  - m_GUID: 44f58a3db9d4419459ba04effcf422d9
-    m_Address: TotorialRU
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ru
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5668e4916042d9e4d9a221d69e6411c3
     m_Address: LVL2totorialRU
     m_ReadOnly: 1
@@ -31,6 +25,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f76b4469db516364295ef12a18aad607
     m_Address: LVL3totorialRU
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a427307cad054f34fb362c580369a4a0
+    m_Address: totorial main RU
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ru
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44f58a3db9d4419459ba04effcf422d9
+    m_Address: TotorialRU
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru

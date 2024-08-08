@@ -30,6 +30,14 @@ MonoBehaviour:
     m_Localized: f76b4469db516364295ef12a18aad607[LVL3totorialRU]
     m_Metadata:
       m_Items: []
+  - m_Id: 2672536845094912
+    m_Localized: a427307cad054f34fb362c580369a4a0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2673398694875136
+    m_Localized: a427307cad054f34fb362c580369a4a0[totorial main RU]
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

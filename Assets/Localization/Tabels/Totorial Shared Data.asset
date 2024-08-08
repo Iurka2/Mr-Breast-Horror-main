@@ -27,14 +27,33 @@ MonoBehaviour:
     m_Key: LVL3
     m_Metadata:
       m_Items: []
+  - m_Id: 2672536845094912
+    m_Key: How to paly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2673398694875136
+    m_Key: How to play
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 8401705509922799672
+    - rid: 1887490007670718472
   m_KeyGenerator:
     rid: 8401705509922799671
   references:
     version: 2
     RefIds:
+    - rid: 1887490007670718472
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 2672536845094912
+          m_TableCodes:
+          - en
+          - ru
+        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
     - rid: 8401705509922799671
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
         asm: Unity.Localization}
@@ -53,6 +72,10 @@ MonoBehaviour:
           - en
           - ru
         - m_KeyId: 1449685408354304
+          m_TableCodes:
+          - en
+          - ru
+        - m_KeyId: 2673398694875136
           m_TableCodes:
           - en
           - ru

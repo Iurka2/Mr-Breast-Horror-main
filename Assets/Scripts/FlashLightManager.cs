@@ -13,7 +13,7 @@ public enum FlashLightState {
 [RequireComponent(typeof(AudioSource))]
 public class FlashLightManager : MonoBehaviour {
     [Header("Options")]
-    [Range(0.0f, 2f)][SerializeField] float batteryLossTick = 0.5f;
+    [Range(0.0f, 2f)][SerializeField] float batteryLossTick;
     [SerializeField] int startBattery = 100;
     public int currentBattery;
     public FlashLightState state;
@@ -53,7 +53,7 @@ public class FlashLightManager : MonoBehaviour {
         } else if(state == FlashLightState.On) {
             FlashLight.SetActive(true);
             // Adjust light intensity based on battery level
-            flashLightComponent.intensity = Mathf.Lerp(0, 1, currentBattery / (float)startBattery);
+            flashLightComponent.intensity = Mathf.Lerp(0.3f, 1, currentBattery / (float)startBattery);
         } else if(state == FlashLightState.Dead) {
             FlashLight.SetActive(false);
         }
