@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelData1
   m_EditorClassIdentifier: 
   levelNumber: 1
-  goldTime: 60
+  goldTime: 80
   silverTime: 150
   bronzeTime: 300
   goldScore: 5
